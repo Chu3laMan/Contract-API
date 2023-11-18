@@ -4,7 +4,6 @@ package co.chu3la.service;
 
 import co.chu3la.domain.Transaction;
 import co.chu3la.repository.TransactionRepository;
-import co.chu3la.service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,14 +12,12 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.stubbing.Answer;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.testcontainers.shaded.org.awaitility.Awaitility.given;
 
 @ExtendWith(MockitoExtension.class)
 public class TransactionServiceTest {

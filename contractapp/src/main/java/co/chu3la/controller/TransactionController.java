@@ -33,7 +33,7 @@ public class TransactionController {
             @ApiResponse(responseCode = "400", description = "Bad request"),
             @ApiResponse(responseCode = "500", description = "Server Error")
     })
-    @GetMapping(value = "transactions/{accountNumber}")
+    @GetMapping(value = "account/{accountNumber}/transactions")
     public BaseResponse<Transaction> getTransactionsByAccountNumber(@PathVariable("accountNumber") String accountNumber) {
         BaseResponse baseResponse = new BaseResponse();
         try {

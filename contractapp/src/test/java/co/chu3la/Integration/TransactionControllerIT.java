@@ -2,7 +2,6 @@ package co.chu3la.Integration;
 
 
 import co.chu3la.domain.Transaction;
-import co.chu3la.repository.TransactionRepository;
 import co.chu3la.service.TransactionService;
 import org.junit.jupiter.api.*;
 import org.mockito.Mock;
@@ -11,9 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.testcontainers.containers.MySQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,7 +54,7 @@ public class TransactionControllerIT extends AbstractContainerBaseTest {
         given(transactionService.getAllTransactions(transaction.accountNumber())).willReturn(transactions);
 
         //when - action or the behavior that we are going to test
-        ResultActions resultActions = mockMvc.perform(get("/v1/api/transactions/{accountNumber}", transaction.accountNumber()));
+        ResultActions resultActions = mockMvc.perform(get("/v1/api/account/{accountNumber}/transactions", transaction.accountNumber()));
 
         //then - verify output
         resultActions.andExpect(status().isNotFound())
