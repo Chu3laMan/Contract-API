@@ -1,0 +1,79 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: 'http://localhost:8080'
+    description: Generated server url
+paths:
+  '/transactions/{accountNumber}':
+    get:
+      tags:
+        - transaction-controller
+      summary: Get A all transactions for a specific account number
+      operationId: getTransactionsByAccountNumber
+      parameters:
+        - name: accountNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Get all transactions for a specific account number
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseTransaction'
+        '400':
+          description: Bad request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseTransaction'
+        '500':
+          description: Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseTransaction'
+components:
+  schemas:
+    BaseResponseTransaction:
+      type: object
+      properties:
+        status:
+          type: boolean
+        msg:
+          type: string
+        jsonData:
+          $ref: '#/components/schemas/Transaction'
+        statusCode:
+          type: string
+    Transaction:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        lastModifiedBy:
+          type: string
+        id:
+          type: integer
+          format: int64
+        type:
+          type: string
+        date:
+          type: string
+          format: date-time
+        accountNumber:
+          type: string
+        currency:
+          type: string
+        amount:
+          type: string
