@@ -1,0 +1,43 @@
+{
+  "allowRemoteResourceManagement": true,
+  "policyEnforcementMode": "ENFORCING",
+  "resources": [
+    {
+      "name": "Default Resource",
+      "type": "urn:open-banking:resources:default",
+      "ownerManagedAccess": false,
+      "attributes": {},
+      "_id": "7de87654-b321-4b59-8058-4c26c4ae69f9",
+      "uris": [
+        "/*"
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "c8b95a4b-af51-40b0-aefc-d8f25f77dd77",
+      "name": "Default Policy",
+      "description": "A policy that grants access only for users within this realm",
+      "type": "js",
+      "logic": "POSITIVE",
+      "decisionStrategy": "AFFIRMATIVE",
+      "config": {
+        "code": "// by default, grants any permission associated with this policy\n$evaluation.grant();\n"
+      }
+    },
+    {
+      "id": "40a44213-6702-461a-af65-845c36b4d43e",
+      "name": "Default Permission",
+      "description": "A permission that applies to the default resource type",
+      "type": "resource",
+      "logic": "POSITIVE",
+      "decisionStrategy": "UNANIMOUS",
+      "config": {
+        "defaultResourceType": "urn:open-banking:resources:default",
+        "applyPolicies": "[\"Default Policy\"]"
+      }
+    }
+  ],
+  "scopes": [],
+  "decisionStrategy": "UNANIMOUS"
+}
