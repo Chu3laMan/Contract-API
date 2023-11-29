@@ -4,8 +4,8 @@ package co.chu3la.controller;
 import co.chu3la.Adapter.OBTransactionAdapter;
 import co.chu3la.Adapter.TransactionApiClient;
 import co.chu3la.domain.Transaction;
-import co.chu3la.model.OBReadDataTransaction6;
 import org.springframework.web.reactive.function.client.WebClient;
+import co.chu3la.model.OBReadDataTransaction6;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -28,7 +28,7 @@ public class RESTTransactionsAPIClient implements TransactionApiClient {
                 .retrieve()
                 .bodyToMono(OBReadDataTransaction6.class);
 
-        OBReadDataTransaction6 obReadDataTransaction6 = transactionResponse.block(); 
+        OBReadDataTransaction6 obReadDataTransaction6 = transactionResponse.block();
 
         return obReadDataTransaction6.getTransaction()
                 .stream()

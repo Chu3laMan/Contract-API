@@ -8,17 +8,18 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.5.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>co.chu3la</groupId>
     <artifactId>contractapp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <description>Contract API</description>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>11</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>co.chu3la.ContractAPI</start-class>
     </properties>
 
     <dependencies>
@@ -174,24 +175,54 @@
             <artifactId>resilience4j-spring-boot2</artifactId>
             <version>1.7.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.7.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+
+            <plugin>
+                <artifactId>maven-install-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.1.1</version>
+            </plugin>
+
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>co.chu3la.ContractAPI</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <verbose>true</verbose>
+                    <skipTests>true</skipTests>
                 </configuration>
             </plugin>
+
+
+
+
         </plugins>
     </build>
 
